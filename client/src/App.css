@@ -42,3 +42,8 @@
 .header__nav-item:last-child {
   margin-right: 0;
 }
+
+.misdemeanour__table {
+  width: 100%;
+  border: solid black;
+}
