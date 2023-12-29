@@ -41,7 +41,13 @@ const Misdemeanour: React.FC = () => {
             <tr key={index}>
               <td>{misdemeanour.citizenId}</td>
               <td>{misdemeanour.date}</td>
-              <td>{misdemeanour.misdemeanour}</td>
+              <td>
+                {misdemeanour.misdemeanour}
+                {misdemeanour.misdemeanour === "rudeness" && " 🤪"}
+                {misdemeanour.misdemeanour === "lift" && " 🗣"}
+                {misdemeanour.misdemeanour === "vegetables" && " 🥗"}
+                {misdemeanour.misdemeanour === "united" && " 😈"}
+              </td>
               <td>data to follow</td>
             </tr>
           ))}
