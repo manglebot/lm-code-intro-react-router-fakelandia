@@ -1,7 +1,7 @@
 const Misdemeanour: React.FC = () => {
   return (
     <div>
-      <h1>Confession!</h1>
+      <h1>Misdemeanour!</h1>
     </div>
   );
 };
