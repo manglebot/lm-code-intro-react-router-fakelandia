@@ -7,10 +7,10 @@ const Nav = () => (
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to="/confession">Confession</NavLink>
+        <NavLink to="/misdemeanour">Misdemeanour</NavLink>
       </li>
       <li>
-        <NavLink to="/misdemeanour">Misdemeanour</NavLink>
+        <NavLink to="/confession">Confession</NavLink>
       </li>
     </ul>
   </nav>
