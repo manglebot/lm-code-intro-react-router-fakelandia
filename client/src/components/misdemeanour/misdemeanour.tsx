@@ -6,6 +6,13 @@ type MisdemeanourProps = {
   misdemeanour: string;
 };
 
+const emojiMap: Record<string, string> = {
+  rudeness: " 🤪",
+  lift: " 🗣",
+  vegetables: " 🥗",
+  united: " 😈",
+};
+
 const Misdemeanour: React.FC = () => {
   const [misdemeanours, setMisdemeanours] = useState<MisdemeanourProps[]>([]);
 
@@ -43,10 +50,7 @@ const Misdemeanour: React.FC = () => {
               <td>{misdemeanour.date}</td>
               <td>
                 {misdemeanour.misdemeanour}
-                {misdemeanour.misdemeanour === "rudeness" && " 🤪"}
-                {misdemeanour.misdemeanour === "lift" && " 🗣"}
-                {misdemeanour.misdemeanour === "vegetables" && " 🥗"}
-                {misdemeanour.misdemeanour === "united" && " 😈"}
+                {emojiMap[misdemeanour.misdemeanour]}
               </td>
               <td>data to follow</td>
             </tr>
