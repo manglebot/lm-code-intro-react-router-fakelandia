@@ -4,13 +4,28 @@ const Nav = () => (
   <nav className="header__nav">
     <ul className="header__nav-list">
       <li className="header__nav-item">
-        <NavLink to="/">Home</NavLink>
+        <NavLink
+          to="/"
+          style={({ isActive }) => ({ color: isActive ? "purple" : "black" })}
+        >
+          Home
+        </NavLink>
       </li>
       <li className="header__nav-item">
-        <NavLink to="/misdemeanour">Misdemeanour</NavLink>
+        <NavLink
+          to="/misdemeanour"
+          style={({ isActive }) => ({ color: isActive ? "purple" : "black" })}
+        >
+          Misdemeanour
+        </NavLink>
       </li>
       <li className="header__nav-item">
-        <NavLink to="/confession">Confession</NavLink>
+        <NavLink
+          to="/confession"
+          style={({ isActive }) => ({ color: isActive ? "purple" : "black" })}
+        >
+          Confession
+        </NavLink>
       </li>
     </ul>
   </nav>
