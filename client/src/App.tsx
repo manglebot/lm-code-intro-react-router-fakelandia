@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./App.css";
-import Home from "./components/Home";
-import NotFound from "./components/NotFound";
-import Confession from "./components/Confession";
-import Misdemeanour from "./components/Misdemeanour";
+import Home from "./components/home/home";
+import NotFound from "./components/not_found/not_found";
+import Confession from "./components/confession/confession";
+import Misdemeanour from "./components/misdemeanour/misdemeanour";
 
 function App() {
   return (
