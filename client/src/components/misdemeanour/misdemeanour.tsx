@@ -20,7 +20,7 @@ const Misdemeanour: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8080/api/misdemeanours/5"
+          "http://localhost:8080/api/misdemeanours/10"
         );
         const data = await response.json();
         setMisdemeanours(data.misdemeanours);
@@ -39,7 +39,26 @@ const Misdemeanour: React.FC = () => {
           <tr>
             <th>Citizen ID</th>
             <th>Date</th>
-            <th>Misdemeanour</th>
+            <th>
+              <div className="dropdown">
+                <button className="dropdown__button">Filter</button>
+                <div className="dropdown__options">
+                  <a href="#" className="dropdown__option">
+                    rudeness
+                  </a>
+                  <a href="#" className="dropdown__option">
+                    lift
+                  </a>
+                  <a href="#" className="dropdown__option">
+                    vegetables
+                  </a>
+                  <a href="#" className="dropdown__option">
+                    united
+                  </a>
+                </div>
+              </div>
+              <p>Misdemeanour</p>
+            </th>
             <th>Punishment Idea</th>
           </tr>
         </thead>
