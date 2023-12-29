@@ -1,8 +1,8 @@
 import Nav from "./nav";
 
 const Header = () => (
-  <header>
-    <h1>Fakelandia Justice Department</h1>
+  <header className="header">
+    <h1 className="header__title">Fakelandia Justice Department</h1>
     <Nav />
   </header>
 );
