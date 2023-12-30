@@ -76,6 +76,13 @@ const Misdemeanour: React.FC = () => {
                   >
                     united
                   </a>
+                  <a
+                    href="#"
+                    className="dropdown__option"
+                    onClick={() => handleMisdemeanourChange("")}
+                  >
+                    view all
+                  </a>
                 </div>
               </div>
               <p>Misdemeanour</p>
