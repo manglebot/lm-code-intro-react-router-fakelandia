@@ -104,7 +104,12 @@ const Misdemeanour: React.FC = () => {
                   {misdemeanour.misdemeanour}
                   {emojiMap[misdemeanour.misdemeanour]}
                 </td>
-                <td>data to follow</td>
+                <td>
+                  <img
+                    src={`https://picsum.photos/140/70?random=${index}`}
+                    alt={`Random ${index}`}
+                  />
+                </td>
               </tr>
             ))}
         </tbody>
