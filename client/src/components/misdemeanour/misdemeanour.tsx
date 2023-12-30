@@ -15,6 +15,7 @@ const emojiMap: Record<string, string> = {
 
 const Misdemeanour: React.FC = () => {
   const [misdemeanours, setMisdemeanours] = useState<MisdemeanourProps[]>([]);
+  const [selectedMisdemeanour, setSelectedMisdemeanour] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,6 +33,10 @@ const Misdemeanour: React.FC = () => {
     fetchData();
   }, []);
 
+  const handleMisdemeanourChange = (misdemeanour: string) => {
+    setSelectedMisdemeanour(misdemeanour);
+  };
+
   return (
     <div>
       <table className="misdemeanour__table">
@@ -43,16 +48,32 @@ const Misdemeanour: React.FC = () => {
               <div className="dropdown">
                 <button className="dropdown__button">Filter</button>
                 <div className="dropdown__options">
-                  <a href="#" className="dropdown__option">
+                  <a
+                    href="#"
+                    className="dropdown__option"
+                    onClick={() => handleMisdemeanourChange("rudeness")}
+                  >
                     rudeness
                   </a>
-                  <a href="#" className="dropdown__option">
+                  <a
+                    href="#"
+                    className="dropdown__option"
+                    onClick={() => handleMisdemeanourChange("lift")}
+                  >
                     lift
                   </a>
-                  <a href="#" className="dropdown__option">
+                  <a
+                    href="#"
+                    className="dropdown__option"
+                    onClick={() => handleMisdemeanourChange("vegetables")}
+                  >
                     vegetables
                   </a>
-                  <a href="#" className="dropdown__option">
+                  <a
+                    href="#"
+                    className="dropdown__option"
+                    onClick={() => handleMisdemeanourChange("united")}
+                  >
                     united
                   </a>
                 </div>
@@ -63,17 +84,22 @@ const Misdemeanour: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {misdemeanours.map((misdemeanour, index) => (
-            <tr key={index}>
-              <td>{misdemeanour.citizenId}</td>
-              <td>{misdemeanour.date}</td>
-              <td>
-                {misdemeanour.misdemeanour}
-                {emojiMap[misdemeanour.misdemeanour]}
-              </td>
-              <td>data to follow</td>
-            </tr>
-          ))}
+          {misdemeanours
+            .filter(
+              (m) =>
+                !selectedMisdemeanour || m.misdemeanour === selectedMisdemeanour
+            )
+            .map((misdemeanour, index) => (
+              <tr key={index}>
+                <td>{misdemeanour.citizenId}</td>
+                <td>{misdemeanour.date}</td>
+                <td>
+                  {misdemeanour.misdemeanour}
+                  {emojiMap[misdemeanour.misdemeanour]}
+                </td>
+                <td>data to follow</td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
