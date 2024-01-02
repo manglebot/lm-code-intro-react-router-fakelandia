@@ -89,3 +89,57 @@
 .dropdown:hover .dropdown__button {
   background-color: #3e8e41;
 }
+
+/* confession page */
+.confess-form {
+  font-family: Arial, sans-serif;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.confess-form__label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.confess-form__input,
+.confess-form__textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.confess-form__select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.confess-form__submit {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.confess-form__submit:hover {
+  background-color: #0056b3;
+}
+
+.confess-form__submit:disabled,
+.confess-form__submit[disabled] {
+  border: 1px solid #999;
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
