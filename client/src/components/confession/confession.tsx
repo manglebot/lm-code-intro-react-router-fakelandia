@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Url, UrlObject } from "url";
 
 const Confession: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -26,9 +25,7 @@ const Confession: React.FC = () => {
     }
   };
 
-  const handleSubmit = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
     if (formData.subject === "" || formData.message === "") {
       setErrorMessage("Please fill out all required fields.");
@@ -37,7 +34,7 @@ const Confession: React.FC = () => {
     setErrorMessage("");
   };
 
-  const isFormValid = formData.subject !== "" && formData.message !== "";
+  // const isFormValid = formData.subject !== "" && formData.message !== "";
 
   return (
     <div>
