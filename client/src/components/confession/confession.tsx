@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Confession: React.FC = () => {
   const [formData, setFormData] = useState({
     subject: "",
+    reason: "select",
     message: "",
   });
 
   const [errorMessage, setErrorMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -17,24 +19,33 @@ const Confession: React.FC = () => {
       [name]: value,
     });
 
-    if (value.trim() === "") {
-      setErrorMessage("Please fill out all required fields.");
+    if (name === "reason" && value === "") {
+      setErrorMessage("Please select a reason.");
     } else {
-      handleInputChange;
       setErrorMessage("");
     }
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
-    if (formData.subject === "" || formData.message === "") {
+    if (
+      formData.subject === "" ||
+      formData.message === "" ||
+      formData.reason === "select"
+    ) {
       setErrorMessage("Please fill out all required fields.");
       return;
     }
     setErrorMessage("");
   };
 
-  // const isFormValid = formData.subject !== "" && formData.message !== "";
+  useEffect(() => {
+    if (formData.reason === "select") {
+      setErrorMessage("Please select a reason.");
+    } else {
+      setErrorMessage("");
+    }
+  }, [formData.reason]);
 
   return (
     <div>
@@ -76,10 +87,18 @@ const Confession: React.FC = () => {
             <select
               id="reason"
               name="reason"
-              className="confess-form__select-reason"
+              className={`confess-form__select-reason ${
+                errorMessage ? "confess-form__select-reason--invalid" : ""
+              }`}
+              onChange={handleInputChange}
+              value={formData.reason}
             >
-              <option value="misdemeanour">Misdemeanour</option>
-              <option value="talk">I just want to talk</option>
+              <option value="select">Select</option>
+              <option value="rudeness">Mild Public Rudeness 🤪</option>
+              <option value="lift">Speaking in a Lift 🗣</option>
+              <option value="vegetables">Not Eating Your Vegetables 🥗</option>
+              <option value="united">Supporting Manchester United 😈</option>
+              <option value="talk">I just want to talk 💬</option>
             </select>
             <br />
             <textarea
@@ -105,15 +124,7 @@ const Confession: React.FC = () => {
               }`}
             />
             {errorMessage && (
-              <p
-                className={`confess-form__error-message ${
-                  formData.subject === "" || formData.message === ""
-                    ? "confess-form__error-message--show"
-                    : ""
-                }`}
-              >
-                {errorMessage}
-              </p>
+              <p className="confess-form__error-message">{errorMessage}</p>
             )}
           </form>
         </div>

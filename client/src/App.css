@@ -119,6 +119,10 @@
   flex: 0 0 75%;
 }
 
+.confess-form__select-option {
+  border: 1px solid;
+}
+
 .confess-form__input-subject,
 .confess-form__input-reason {
   flex: 0 0 20%;
@@ -146,6 +150,7 @@
 }
 
 .confess-form__input-subject--invalid,
+.confess-form__select-option--invalid,
 .confess-form__textarea--invalid {
   border-color: #f00;
 }
@@ -190,6 +195,7 @@
 
 .confess-form__error-message {
   width: 100%;
+  color: #f00;
 }
 
 .confess-form__error-message--show {
