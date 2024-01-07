@@ -37,6 +37,8 @@
   },
   "homepage": "https://github.com/techreturners/lm-code-intro-react-router-fakelandia#readme",
   "devDependencies": {
-    "@types/cors": "^2.8.13"
+    "@babel/preset-typescript": "^7.23.3",
+    "@types/cors": "^2.8.13",
+    "jest": "^29.7.0"
   }
 }
