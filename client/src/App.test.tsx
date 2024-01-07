@@ -1,13 +1,11 @@
 import { render } from "@testing-library/react";
+import "@testing-library/jest-dom";
 import App from "./App";
-import { BrowserRouter } from "react-router-dom";
-import { Router } from "express";
 
-test("TODO: write tests!", () => {
-  render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  );
-  expect(false).toBeTruthy();
+describe("App Component", () => {
+  it("renders without crashing", () => {
+    render(<App />);
+    // Add your specific tests here
+    // For example: expect(screen.getByText('Your Text Here')).toBeInTheDocument();
+  });
 });
