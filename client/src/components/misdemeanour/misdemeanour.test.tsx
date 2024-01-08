@@ -1,4 +1,4 @@
-import { render, waitFor } from "@testing-library/react";
+import { render, waitFor, screen } from "@testing-library/react";
 import Misdemeanour from "./misdemeanour";
 import {
   afterEach,
@@ -35,44 +35,95 @@ describe("Tests for API Call", () => {
   });
 });
 
-// describe("Misdemeanour Component", () => {
-//   beforeEach(() => {
-//     vi.spyOn(global, "fetch").mockImplementation((url) => {
-//       if (url.includes("api/misdemeanours/3")) {
-//         return Promise.resolve({
-//           ok: true,
-//           json: () =>
-//             Promise.resolve({
-//               misdemeanours: [
-//                 { citizenId: 4146, misdemeanour: "lift", date: "1/8/2024" },
-//                 { citizenId: 21575, misdemeanour: "lift", date: "1/8/2024" },
-//                 { citizenId: 15232, misdemeanour: "united", date: "1/8/2024" },
-//               ],
-//             }),
-//         });
-//       }
-//       return Promise.resolve({ ok: false });
-//     });
-//   });
+describe("Misdemeanour Component mock tests", () => {
+  beforeEach(() => {
+    vi.spyOn(global, "fetch").mockImplementation(
+      async (url: string | Request) => {
+        if (
+          typeof url === "string" &&
+          url.includes("http://localhost:8080/api/misdemeanours/10")
+        ) {
+          const mockResponse = {
+            ok: true,
+            json: async () => ({
+              misdemeanours: [
+                {
+                  citizenId: 27011,
+                  misdemeanour: "lift",
+                  date: "1/8/2024",
+                },
+                {
+                  citizenId: 19951,
+                  misdemeanour: "vegetables",
+                  date: "1/8/2024",
+                },
+                {
+                  citizenId: 15461,
+                  misdemeanour: "vegetables",
+                  date: "1/8/2024",
+                },
+                {
+                  citizenId: 910,
+                  misdemeanour: "rudeness",
+                  date: "1/8/2024",
+                },
+                {
+                  citizenId: 16619,
+                  misdemeanour: "united",
+                  date: "1/8/2024",
+                },
+                {
+                  citizenId: 4938,
+                  misdemeanour: "united",
+                  date: "1/8/2024",
+                },
+                {
+                  citizenId: 13862,
+                  misdemeanour: "rudeness",
+                  date: "1/8/2024",
+                },
+                {
+                  citizenId: 9230,
+                  misdemeanour: "vegetables",
+                  date: "1/8/2024",
+                },
+                {
+                  citizenId: 26148,
+                  misdemeanour: "vegetables",
+                  date: "1/8/2024",
+                },
+                {
+                  citizenId: 1206,
+                  misdemeanour: "vegetables",
+                  date: "1/8/2024",
+                },
+              ],
+            }),
+          } as Response;
+          return Promise.resolve(mockResponse as Response);
+        }
+        return Promise.resolve({} as Response);
+      }
+    );
+  });
 
-// afterEach(() => {
-//   vi.restoreAllMocks();
-// });
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
 
-// it("renders the Misdemeanour component", () => {
-//   render(<Misdemeanour />);
-//   expect(screen.getByTestId("misdemeanour")).toBeInTheDocument();
-//   expect(screen.getByText("Citizen ID")).toBeInTheDocument();
-//   // Add more expectations specific to your component
-// });
+  it("renders the Misdemeanour component", () => {
+    render(<Misdemeanour />);
+    expect(screen.getByTestId("misdemeanour")).toBeInTheDocument();
+    expect(screen.getByText("Citizen ID")).toBeInTheDocument();
+    // Add more expectations specific to your component
+  });
 
-// it("fetches misdemeanours data on component mount", async () => {
-//   render(<Misdemeanour />);
-//   await waitFor(() => {
-//     expect(global.fetch).toHaveBeenCalledWith(
-//       "http://localhost:8080/api/misdemeanours/3"
-//     );
-//   });
-// });
-
-// });
+  it("fetches misdemeanours data on component mount", async () => {
+    render(<Misdemeanour />);
+    await waitFor(() => {
+      expect(global.fetch).toHaveBeenCalledWith(
+        "http://localhost:8080/api/misdemeanours/10"
+      );
+    });
+  });
+});

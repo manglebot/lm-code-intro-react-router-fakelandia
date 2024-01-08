@@ -39,7 +39,7 @@ const Misdemeanour: React.FC = () => {
 
   return (
     <div>
-      <table className="misdemeanour__table">
+      <table className="misdemeanour__table" data-testid="misdemeanour">
         <thead>
           <tr>
             <th>Citizen ID</th>
