@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import Misdemeanour from "./misdemeanour";
 import {
   afterEach,
@@ -10,9 +10,7 @@ import {
   vi,
   JestAssertion,
 } from "vitest";
-import { ViteDevServer } from "vite";
-
-// import { render, waitFor, screen } from "@testing-library/react";
+// import { ViteDevServer } from "vite";
 
 describe("Tests for Misdemeanour page", () => {
   test("renders Misdemeanour component without crashing", () => {
@@ -36,3 +34,45 @@ describe("Tests for API Call", () => {
     );
   });
 });
+
+// describe("Misdemeanour Component", () => {
+//   beforeEach(() => {
+//     vi.spyOn(global, "fetch").mockImplementation((url) => {
+//       if (url.includes("api/misdemeanours/3")) {
+//         return Promise.resolve({
+//           ok: true,
+//           json: () =>
+//             Promise.resolve({
+//               misdemeanours: [
+//                 { citizenId: 4146, misdemeanour: "lift", date: "1/8/2024" },
+//                 { citizenId: 21575, misdemeanour: "lift", date: "1/8/2024" },
+//                 { citizenId: 15232, misdemeanour: "united", date: "1/8/2024" },
+//               ],
+//             }),
+//         });
+//       }
+//       return Promise.resolve({ ok: false });
+//     });
+//   });
+
+// afterEach(() => {
+//   vi.restoreAllMocks();
+// });
+
+// it("renders the Misdemeanour component", () => {
+//   render(<Misdemeanour />);
+//   expect(screen.getByTestId("misdemeanour")).toBeInTheDocument();
+//   expect(screen.getByText("Citizen ID")).toBeInTheDocument();
+//   // Add more expectations specific to your component
+// });
+
+// it("fetches misdemeanours data on component mount", async () => {
+//   render(<Misdemeanour />);
+//   await waitFor(() => {
+//     expect(global.fetch).toHaveBeenCalledWith(
+//       "http://localhost:8080/api/misdemeanours/3"
+//     );
+//   });
+// });
+
+// });
