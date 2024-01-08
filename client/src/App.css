@@ -45,6 +45,16 @@
   margin-right: 0;
 }
 
+/* home page */
+.home_title {
+  padding-top: 5rem;
+  font-size: 2.5rem;
+}
+
+.home_subtitle {
+  font-size: 1.5rem;
+}
+
 .misdemeanour__table {
   width: 100%;
   border: solid black;
@@ -115,8 +125,12 @@
   margin-top: 8px;
 }
 
+.confess-form__label-subject {
+  padding-top: 6px;
+}
+
 .confess-form__label-reason {
-  flex: 0 0 75%;
+  flex: 0 0 55%;
 }
 
 .confess-form__select-option {
@@ -133,6 +147,7 @@
 
 .confess-form__input-subject {
   width: 6.3rem;
+  height: 1.7rem;
 }
 
 .confess-form__input,
@@ -147,6 +162,7 @@
 
 .confess-form__textarea {
   min-height: 10rem;
+  margin-right: 11px;
 }
 
 .confess-form__input-subject--invalid,
@@ -199,12 +215,19 @@
 }
 
 .confess-form__error-message--show {
-  border: solid yellow;
+  border: none;
 }
 
 .confession-received__container {
   margin: 0 auto;
-  max-width: 60vw;
+  max-width: 51vw;
+  background-color: #efefef;
+  padding: 10px;
+  margin-top: 15px;
+}
+
+.confession-received__header {
+  padding: 0;
 }
 
 .confession-received__subject,
