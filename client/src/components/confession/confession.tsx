@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Confession: React.FC = () => {
@@ -20,7 +20,9 @@ const Confession: React.FC = () => {
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
     setFormData({
@@ -47,13 +49,6 @@ const Confession: React.FC = () => {
     }
     setErrorMessage("");
 
-    // useEffect(() => {
-    //   if (formData.reason === "select") {
-    //     setErrorMessage("Please select a reason.");
-    //   } else {
-    //     setErrorMessage("");
-    //   }
-    // }, [formData.reason]);
     try {
       const response = await fetch("http://localhost:8080/api/confess", {
         method: "POST",
@@ -175,15 +170,6 @@ const Confession: React.FC = () => {
                 JSON.stringify(newMisdemeanour)
               )}`}
             >
-              {/* <Link
-              to={`/misdemeanours/${encodeURIComponent(
-                JSON.stringify({
-                  citizenId: 1017,
-                  misdemeanour: "united",
-                  date: "08/01/2024",
-                })
-              )}`}
-            > */}
               View your confession on the misdemeanour page
             </Link>
           </p>
