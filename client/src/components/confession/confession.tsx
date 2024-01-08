@@ -155,6 +155,22 @@ const Confession: React.FC = () => {
           </form>
         </div>
       </main>
+      {submitted && (
+        <div className="confession-received__container">
+          <h2 className="confession-received__header">
+            Thankyou for your confession
+          </h2>
+          <p className="confession-received__subject">
+            Subject:{formData.subject}
+          </p>
+          <p className="confession-received__reason">
+            Reason:{formData.reason}
+          </p>
+          <p className="confession-received__details">
+            Details:{formData.details}
+          </p>
+        </div>
+      )}
     </div>
   );
 };

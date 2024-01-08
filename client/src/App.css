@@ -201,3 +201,20 @@
 .confess-form__error-message--show {
   border: solid yellow;
 }
+
+.confession-received__container {
+  margin: 0 auto;
+  max-width: 60vw;
+}
+
+.confession-received__subject,
+.confession-received__reason,
+.confession-received__details {
+  font-weight: bold;
+}
+
+.confession-received__details {
+  height: auto;
+  max-height: 7rem;
+  overflow: auto;
+}
