@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 type MisdemeanourProps = {
   citizenId: number;
@@ -16,6 +17,7 @@ const emojiMap: Record<string, string> = {
 const Misdemeanour: React.FC = () => {
   const [misdemeanours, setMisdemeanours] = useState<MisdemeanourProps[]>([]);
   const [selectedMisdemeanour, setSelectedMisdemeanour] = useState<string>("");
+  const { confession } = useParams<{ confession: string }>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -112,6 +114,7 @@ const Misdemeanour: React.FC = () => {
                 </td>
               </tr>
             ))}
+          {/* {confesssion data here} */}
         </tbody>
       </table>
     </div>

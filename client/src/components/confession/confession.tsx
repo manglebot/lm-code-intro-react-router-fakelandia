@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Confession: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -6,9 +7,17 @@ const Confession: React.FC = () => {
     reason: "select",
     details: "",
   });
-
   const [errorMessage, setErrorMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
+
+  const today = new Date();
+  const randomCitizenId = Math.floor(Math.random() * 10000);
+
+  const newMisdemeanour = {
+    citizenId: randomCitizenId,
+    misdemeanour: formData.reason,
+    date: today.toLocaleDateString(),
+  };
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -160,6 +169,11 @@ const Confession: React.FC = () => {
           <h2 className="confession-received__header">
             Thankyou for your confession
           </h2>
+          <p>
+            <Link to={`/misdemeanours/${JSON.stringify(newMisdemeanour)}`}>
+              View your confession on the misdemeanour page
+            </Link>
+          </p>
           <p className="confession-received__subject">
             Subject:{formData.subject}
           </p>
