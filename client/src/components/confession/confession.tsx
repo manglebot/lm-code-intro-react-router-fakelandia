@@ -4,7 +4,7 @@ const Confession: React.FC = () => {
   const [formData, setFormData] = useState({
     subject: "",
     reason: "select",
-    message: "",
+    details: "",
   });
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -26,26 +26,50 @@ const Confession: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
     if (
       formData.subject === "" ||
-      formData.message === "" ||
+      formData.details === "" ||
       formData.reason === "select"
     ) {
       setErrorMessage("Please fill out all required fields.");
       return;
     }
     setErrorMessage("");
-  };
 
-  useEffect(() => {
-    if (formData.reason === "select") {
-      setErrorMessage("Please select a reason.");
-    } else {
-      setErrorMessage("");
+    // useEffect(() => {
+    //   if (formData.reason === "select") {
+    //     setErrorMessage("Please select a reason.");
+    //   } else {
+    //     setErrorMessage("");
+    //   }
+    // }, [formData.reason]);
+    try {
+      const response = await fetch("http://localhost:8080/api/confess", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message);
+      }
+
+      const data = await response.json();
+      if (data.success && !data.justTalked) {
+        console.log("data:", data);
+      }
+
+      setSubmitted(true);
+    } catch (error: any) {
+      console.error("Error:", error);
+      setErrorMessage(error?.message || "Something went wrong!");
     }
-  }, [formData.reason]);
+  };
 
   return (
     <div>
@@ -98,17 +122,17 @@ const Confession: React.FC = () => {
               <option value="lift">Speaking in a Lift 🗣</option>
               <option value="vegetables">Not Eating Your Vegetables 🥗</option>
               <option value="united">Supporting Manchester United 😈</option>
-              <option value="talk">I just want to talk 💬</option>
+              <option value="just-talk">I just want to talk 💬</option>
             </select>
             <br />
             <textarea
-              id="message"
-              name="message"
+              id="details"
+              name="details"
               style={{ width: "100%", resize: "vertical" }}
               rows={4}
               cols={50}
               className={`confess-form__textarea ${
-                formData.message === "" ? "confess-form__textarea--invalid" : ""
+                formData.details === "" ? "confess-form__textarea--invalid" : ""
               }`}
               onChange={handleInputChange}
             ></textarea>
@@ -120,7 +144,7 @@ const Confession: React.FC = () => {
               type="submit"
               value="Confess"
               className={`confess-form__submit ${
-                formData.message === "" ? "confess-form__submit--disabled" : ""
+                formData.details === "" ? "confess-form__submit--disabled" : ""
               }`}
             />
             {errorMessage && (
