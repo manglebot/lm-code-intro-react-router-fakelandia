@@ -241,3 +241,7 @@
   max-height: 7rem;
   overflow: auto;
 }
+
+.confession__data {
+  background-color: #e8e7d8;
+}

@@ -19,6 +19,10 @@ const Misdemeanour: React.FC = () => {
   const [selectedMisdemeanour, setSelectedMisdemeanour] = useState<string>("");
   const { confession } = useParams<{ confession: string }>();
 
+  const confessionData = confession
+    ? JSON.parse(decodeURIComponent(confession))
+    : null;
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -93,6 +97,22 @@ const Misdemeanour: React.FC = () => {
           </tr>
         </thead>
         <tbody>
+          {confessionData && (
+            <tr className="confession__data">
+              <td>{confessionData.citizenId}</td>
+              <td>{confessionData.date}</td>
+              <td>
+                {confessionData.misdemeanour}
+                {emojiMap[confessionData.misdemeanour]}
+              </td>
+              <td>
+                <img
+                  src={`https://picsum.photos/140/70?random=${confessionData.citizenId}`}
+                  alt={`Random ${confessionData.citizenId}`}
+                />
+              </td>
+            </tr>
+          )}
           {misdemeanours
             .filter(
               (m) =>
@@ -114,7 +134,6 @@ const Misdemeanour: React.FC = () => {
                 </td>
               </tr>
             ))}
-          {/* {confesssion data here} */}
         </tbody>
       </table>
     </div>

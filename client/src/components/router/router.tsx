@@ -11,7 +11,7 @@ const Router: React.FC = () => (
     <Route path="/" element={<MainLayout />}>
       <Route index element={<Home />} />
       <Route path="misdemeanour" element={<Misdemeanour />} />
-      <Route path="misdemeanour/:newMisdemeanour" element={<Misdemeanour />} />
+      <Route path="misdemeanours/:confession" element={<Misdemeanour />} />
       <Route path="confession" element={<Confession />} />
       <Route path="*" element={<NotFound />} />
     </Route>

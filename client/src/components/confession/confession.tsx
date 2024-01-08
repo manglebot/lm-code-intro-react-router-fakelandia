@@ -170,7 +170,20 @@ const Confession: React.FC = () => {
             Thankyou for your confession
           </h2>
           <p>
-            <Link to={`/misdemeanours/${JSON.stringify(newMisdemeanour)}`}>
+            <Link
+              to={`/misdemeanours/${encodeURIComponent(
+                JSON.stringify(newMisdemeanour)
+              )}`}
+            >
+              {/* <Link
+              to={`/misdemeanours/${encodeURIComponent(
+                JSON.stringify({
+                  citizenId: 1017,
+                  misdemeanour: "united",
+                  date: "08/01/2024",
+                })
+              )}`}
+            > */}
               View your confession on the misdemeanour page
             </Link>
           </p>
