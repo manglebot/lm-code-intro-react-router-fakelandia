@@ -56,15 +56,17 @@ const Confession: React.FC = () => {
 
       if (!response.ok) {
         const data = await response.json();
-        throw new Error(data.message);
+        throw new Error(data?.message || "Something went wrong!");
       }
 
       const data = await response.json();
-      if (data.success && !data.justTalked) {
-        console.log("data:", data);
-      }
 
-      setSubmitted(true);
+      if (data.success === false) {
+        setErrorMessage(data.message || "Something went wrong!");
+      } else if (data.success === true && data.justTalked === false) {
+        console.log("this is where the database gets updated: ", data);
+        setSubmitted(true);
+      }
     } catch (error: any) {
       console.error("Error:", error);
       setErrorMessage(error?.message || "Something went wrong!");
