@@ -115,7 +115,6 @@ describe("Misdemeanour Component mock tests", () => {
     render(<Misdemeanour />);
     expect(screen.getByTestId("misdemeanour")).toBeInTheDocument();
     expect(screen.getByText("Citizen ID")).toBeInTheDocument();
-    // Add more expectations specific to your component
   });
 
   it("fetches misdemeanours data on component mount", async () => {
